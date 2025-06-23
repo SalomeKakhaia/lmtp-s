@@ -50,6 +50,7 @@ estimate_sdr <- function(task, fold, ratios, learners, control, pb) {
     if (control$.return_full_fits) {
       fits[[t]] <- fit
     } else {
+      print(fit) ################# edit S
       fits[[t]] <- extract_sl_weights(fit)
     }
 
