@@ -31,6 +31,7 @@ estimate_sdr <- function(task, fold, ratios, learners, control, pb) {
 
   fits <- vector("list", length = task$tau)
   for (t in task$tau:1) {
+    cat("t =", t,"\n")  ################# edit S
     y1 <- task$at_risk_N(natural$train, t-1)
     d0 <- task$at_risk_D(natural$train, t-1)
     c1 <- task$observed(natural$train, t)
@@ -46,11 +47,11 @@ estimate_sdr <- function(task, fold, ratios, learners, control, pb) {
                         control$.learners_outcome_folds,
                         control$.discrete,
                         control$.info)
-
+    print(fit) ################# edit S
     if (control$.return_full_fits) {
       fits[[t]] <- fit
     } else {
-      print(fit) ################# edit S
+      
       fits[[t]] <- extract_sl_weights(fit)
     }
 
