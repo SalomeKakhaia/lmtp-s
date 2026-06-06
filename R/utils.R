@@ -45,13 +45,24 @@ last <- function(x) {
   x[length(x)]
 }
 
+# extract_sl_weights <- function(fit) {
+#   if (inherits(fit, "mlr3superlearner")) {
+#     # return(cbind(Risk = fit$risk))
+#     return(cbind(Weights = fit$weights)) #risk
+#   }
+#   fit$coef
+# }
+
 extract_sl_weights <- function(fit) {
   if (inherits(fit, "mlr3superlearner")) {
-    # return(cbind(Risk = fit$risk))
-    return(cbind(Weights = fit$weights)) #risk
+    return(cbind(
+      Risk = fit$risk,
+      Weights = fit$weights
+    ))
   }
+
   fit$coef
-}
+}         
 
 convert_to_surv <- function(x) {
   data.table::fcase(
